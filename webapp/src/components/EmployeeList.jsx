@@ -60,11 +60,11 @@ export default function EmployeeList() {
     useEffect(() => {
         if(empType=="" && filterAttr=="name" ){
             
-            (idFilter=="des")?  employees.sort((a,b)=> a.DisplayName.localeCompare(b.DisplayName)):(employees.sort((a,b)=> b.DisplayName.localeCompare(a.DisplayName)))
+            (nameFilter=="des")?  employees.sort((a,b)=> a.DisplayName.localeCompare(b.DisplayName)):(employees.sort((a,b)=> b.DisplayName.localeCompare(a.DisplayName)))
         }
         else if(filterAttr=="name" ){
             // (idFilter=="asc")?  filterEmployees.sort((a,b)=> b.id-a.id):(null)
-            (idFilter=="des")?  filterEmployees.sort((a,b)=> a.DisplayName.localeCompare(b.DisplayName)):(filterEmployees.sort((a,b)=> b.DisplayName.localeCompare(a.DisplayName)))
+            (nameFilter=="des")?  filterEmployees.sort((a,b)=> a.DisplayName.localeCompare(b.DisplayName)):(filterEmployees.sort((a,b)=> b.DisplayName.localeCompare(a.DisplayName)))
         }
         console.log(filterAttr,nameFilter)
     
