@@ -51,7 +51,7 @@ export default function Addemployee(props) {
                 <Form.Field required >
                     <label>Full Name</label>
                     <input placeholder='Full Name' name="FullName" type="text"
-                    onChange={(e, { value }) => setEmployee({ ...employee, FullName: value })}
+                    onChange={(e) => setEmployee({ ...employee, FullName: e.target.value })}
                     //   onChange={(e)=>{setQuestionatt({...questionatt,Question:e.target.value})}}
                     />
                 </Form.Field>
@@ -61,14 +61,14 @@ export default function Addemployee(props) {
                     <Form.Field required>
                         <label>Name With Initials</label>
                         <input placeholder='Name with Initials' name='NameWithInitials' type="text"
-                        onChange={(e, { value }) => setEmployee({ ...employee, NameWithInitials: value })}
+                        onChange={(e) => setEmployee({ ...employee, NameWithInitials:  e.target.value })}
                         //   on={(e)=>{setQuestionatt({...questionatt,Salary:e.target.value})}}
                         />
                     </Form.Field>
                     <Form.Field >
                         <label>Prefered / Display Name</label>
                         <input placeholder='Display Name' name="DisplayName" type="text"
-                        onChange={(e, { value }) => setEmployee({ ...employee, DisplayName: value })}
+                        onChange={(e) => setEmployee({ ...employee, DisplayName:  e.target.value })}
                         //   onChange={(e)=>{setQuestionatt({...questionatt,Question:e.target.value})}}
                         />
                     </Form.Field>
@@ -116,14 +116,14 @@ export default function Addemployee(props) {
                     <Form.Field >
                         <label>Email</label>
                         <input placeholder='Email' name='Email' type="email"
-                        onChange={(e, { value }) => setEmployee({ ...employee, Email: value })}
+                        onChange={(e) => setEmployee({ ...employee, Email:  e.target.value })}
                         //   on={(e)=>{setQuestionatt({...questionatt,Salary:e.target.value})}}
                         />
                     </Form.Field>
                     <Form.Field >
                         <label>Mobile Number</label>
                         <input placeholder='Mobile Number' name="MobileNumber" type="text"
-                        onChange={(e, { value }) => setEmployee({ ...employee, MobileNumber: value })}
+                        onChange={(e) => setEmployee({ ...employee, MobileNumber:  e.target.value })}
                         //   onChange={(e)=>{setQuestionatt({...questionatt,Question:e.target.value})}}
                         />
                     </Form.Field>
@@ -133,7 +133,7 @@ export default function Addemployee(props) {
                     <Form.Field  >
                         <label>Designation</label>
                         <input placeholder='Designation' name="Designation" type="text"
-                        onChange={(e, { value }) => setEmployee({ ...employee, Designation: value })}
+                        onChange={(e) => setEmployee({ ...employee, Designation:  e.target.value })}
                         //   onChange={(e)=>{setQuestionatt({...questionatt,Question:e.target.value})}}
                         />
                     </Form.Field>
@@ -194,7 +194,7 @@ export default function Addemployee(props) {
                 <Form.Field  width={8} >
                         <label>Salary</label>
                         <input placeholder='Salary' name="Salary" type="number"
-                        onChange={(e, { value }) => setEmployee({ ...employee, Salary: value })}
+                        onChange={(e) => setEmployee({ ...employee, Salary:e.target.value })}
                         //   onChange={(e)=>{setQuestionatt({...questionatt,Question:e.target.value})}}
                         />
                     </Form.Field>
@@ -214,7 +214,9 @@ export default function Addemployee(props) {
 
                     </Dropdown>
         </Form.Field> */}
-                <Form.TextArea label='Personal Notes' />
+                <Form.TextArea label='Personal Notes' 
+                onChange={(e) => setEmployee({ ...employee, PersonalNotes:e.target.value })}
+                />
                 {/* <Button type='submit' onClick={(e)=>{onSubmitHandler(e)}} >Submit</Button> */}
                 {/* <Message negative  hidden={!errormsg}>
     <Message.Header >Fields are empty</Message.Header>
