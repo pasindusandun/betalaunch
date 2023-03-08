@@ -4,6 +4,7 @@ import { Button, Header, Image, Modal, Checkbox, Icon, Table, Input, Card, Dropd
 // import { useSelector,useDispatch} from 'react-redux'
 import axios from "axios";
 import Employeerow from "./Employeerow";
+import Addemployee from "./Addemployee";
 export default function EmployeeList() {
     const [empType, setEmpType] = useState("");
     const [filterEmployees, setFilterEmployees] = useState([]);
@@ -73,15 +74,23 @@ export default function EmployeeList() {
     
     
   return (
-    <div className='carditme'>
-      <Card fluid className='carditme'>
-        <div className='addquestionbtn'>
+    // <div className='carditme' >
+      
+      <Card fluid
+      //  className='carditme'
+       >
+      <h3 style={{ textAlign:'left',paddingLeft:10,paddingTop:10}}>  People</h3>
+        <div 
+        className='addemployeebtn'
+        >
         <Dropdown
                       compact
                       selection
                       onChange={(e, { value }) => { setEmpType(value) }}
                       options={options}
                       value={empType}
+                      placeholder="Employee Type"
+                      style={{marginRight:10}}
                     >
                          </Dropdown>
           <Modal
@@ -89,19 +98,23 @@ export default function EmployeeList() {
             onOpen={() => setOpen(true)}
             open={open}
             trigger={<Button color="blue">Add People</Button>}
+           
           >
-            {/* <Insertquestion questions={questions} setOpen={setOpen} /> */}
+            <Addemployee employees={employees} setOpen={setOpen} empTypOptions={options} setEmployees={setEmployees}/>
           </Modal>
           
         </div>
+        <br/>
         {/* <div className='searchCard'>
          
 
         
         </div> */}
-        <div className='carditme'>
-          <Card fluid className='carditme'>
-            <Table basic>
+        <div>
+          <Card fluid
+          //  className='carditme'
+           >
+            <Table>
               <Table.Header>
                 <Table.Row key={"0"}>
                   <Table.HeaderCell singleLine>Display Name <Button basic onClick={()=>{
@@ -154,6 +167,6 @@ export default function EmployeeList() {
           </Card>
         </div>
       </Card>
-    </div>
+    //  </div>
   );
 }

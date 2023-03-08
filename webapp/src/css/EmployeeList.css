@@ -7,21 +7,12 @@
     color: #888;
   }
   
-  .addquestionbtn{
+  .addemployeebtn{
     align-self: flex-end;
     padding: 0.5%;
   }
-  .searchCardinput{
-    width: 85%;
-    padding-left:1%;
-    padding-right:1%;
-    padding-top:1%;
-    padding-bottom:1%;
-  }
-  .searchCardbutton{
-   padding: 1%;
-   width: 13%;
-  }
+
+
   .carditme{
     padding: 2%;
   }
