@@ -4,12 +4,14 @@ import { Button, Header, Image, Modal, Checkbox, Form, Dropdown, Message, Divide
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import axios from "axios";
+import validator from "validator";
 
 export default function Addemployee(props) {
     const CategoryOptions = [
         { key: 1, text: "Female", value: "Female" },
         { key: 2, text: "Male", value: "Male" }
     ]
+    const [errMesHidden, setErrMesHidden] = useState(true)
     const [employee, setEmployee] = useState({
         FullName: "",
         NameWithInitials: "",
@@ -32,8 +34,10 @@ export default function Addemployee(props) {
     // }, [employee.DOB,employee.JoinedDate])
     
     const onSubmitHandler=()=>{
-        
-        axios.post('http://localhost:5000/user',{...employee,DOB:Date.parse(employee.DOB),JoinedDate:Date.parse(employee.JoinedDate)}).then((res)=>{
+
+        if(validator.isEmail(employee.Email) && employee.FullName !="" && employee.NameWithInitials !="" ){
+            setErrMesHidden(true)
+            axios.post('http://localhost:5000/user',{...employee,DOB:Date.parse(employee.DOB),JoinedDate:Date.parse(employee.JoinedDate)}).then((res)=>{
             if(res.data.id){
                  props.setEmployees([
                     ...props.employees,
@@ -45,6 +49,12 @@ export default function Addemployee(props) {
           }).catch((err)=>{
             console.log(err)
           })
+        }
+        else{
+            setErrMesHidden(false)
+        }
+        
+        
         // props.setEmployees([
         //     ...props.employes,
         //     employee
@@ -259,6 +269,16 @@ export default function Addemployee(props) {
                 <Button color='blue' onClick={()=>onSubmitHandler()}>Add People</Button>
 
             </Form.Group>
+            {/* <Message
+    error
+    header='There was some errors with your submission'
+    list={err}
+  /> */}
+
+<Message negative hidden={errMesHidden}>
+    <Message.Header>There was some errors with your submission</Message.Header>
+    {/* <p>That offer has expired</p> */}
+  </Message>
             {/* </div> */}
                
                 {/* <Form.Button   color='blue'  content='Add People' /> */}
