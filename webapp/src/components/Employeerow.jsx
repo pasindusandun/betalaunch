@@ -9,6 +9,7 @@ export default function Employeerow({ employee,
   const [deleteOpen, setDeleteOpen] = useState(false)
   const [editOpen, setEditOpen] = useState(false);
   const onDeleteHandler = () => {
+    //delete employee
     axios.delete(`http://localhost:5000/user/delete/${employee._id}`).then((res) => {
       if (res.data.id) {
 

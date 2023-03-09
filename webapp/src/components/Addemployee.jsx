@@ -24,7 +24,7 @@ export default function Addemployee(props) {
         EmployeeType: "",
         JoinedDate: "",
         Experience: "",
-        Salary: 200000,
+        Salary: 0,
         PersonalNotes: ""
 
     });
@@ -53,7 +53,7 @@ export default function Addemployee(props) {
 
 
 
-        console.log(employee)
+     
     }
     return (
         <div>
@@ -75,7 +75,7 @@ export default function Addemployee(props) {
                     <input placeholder='Full Name' name="FullName" type="text"
                         onChange={(e) => {
                             setEmployee({ ...employee, FullName: e.target.value })
-                            console.log('employee.FullName', e.target.value)
+                           
                         }}
 
                     />
@@ -205,7 +205,7 @@ export default function Addemployee(props) {
                         <input placeholder='Salary' name="Salary" type="number"
                             onChange={(e) => {
                                 setEmployee({ ...employee, Salary: e.target.value })
-                                console.log('employee.Salary', e.target.value)
+                             
                             }}
 
 

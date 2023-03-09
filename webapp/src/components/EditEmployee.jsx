@@ -18,7 +18,8 @@ export default function EditEmployee(props) {
         JoinedDate: Date.parse(props.employee.JoinedDate)
     });
     const onSubmitHandler = () => {
-        console.log('props.employee.JoinedDate', props.employee.JoinedDate)
+      
+        //validate and add employee
         if (validator.isEmail(employee.Email) && employee.FullName != "" && employee.NameWithInitials != "") {
             setErrMesHidden(true)
             axios.post(`http://localhost:5000/user/update/${employee._id}`, { ...employee, DOB: Date.parse(employee.DOB), JoinedDate: Date.parse(employee.JoinedDate) }).then((res) => {
@@ -39,13 +40,9 @@ export default function EditEmployee(props) {
         }
 
 
-        console.log(employee)
+        
     }
-    useEffect(() => {
-
-        console.log('employee', employee)
-        console.log('props.employee', props.employee)
-    }, [])
+  
 
     return (
         <div>
@@ -220,7 +217,7 @@ export default function EditEmployee(props) {
                     onChange={(e) => setEmployee({ ...employee, PersonalNotes: e.target.value })}
                     value={employee.PersonalNotes}
                 />
-
+                    
                 <Form.Group inline  >
                     <a onClick={() => { props.setEditOpen(false) }}>cancel </a>
                     <Button color='blue' onClick={() => onSubmitHandler()}>Update People</Button>

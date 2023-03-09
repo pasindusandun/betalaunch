@@ -1,6 +1,6 @@
 import "../css/EmployeeList.css";
 import React, { useEffect, useState } from 'react'
-import { Button,  Modal,  Icon, Table,  Card, Dropdown, Pagination } from 'semantic-ui-react'
+import { Button, Modal, Icon, Table, Card, Dropdown, Pagination } from 'semantic-ui-react'
 import axios from "axios";
 import Employeerow from "./Employeerow";
 import Addemployee from "./Addemployee";
@@ -25,10 +25,11 @@ export default function EmployeeList() {
 
   const OnPageChangeHandler = (data) => {
     setPage(data.activePage)
-    console.log('data', data);
+  
   }
 
   useEffect(() => {
+    //get all employees
     axios.get('http://localhost:5000/user').then((res) => {
       if (res.data[0].id) {
         setEmployees([
@@ -51,7 +52,7 @@ export default function EmployeeList() {
 
   useEffect(() => {
     setMaxpage(Math.ceil(employeeCount / pageSize))
-    console.log('maxpage', Math.ceil(employeeCount / pageSize))
+  
 
   }, [employeeCount])
   useEffect(() => {
@@ -62,10 +63,9 @@ export default function EmployeeList() {
   useEffect(() => {
 
     if (empType != "") {
-      console.log("employees", employees)
+    
       setFilterEmployees([...employees.filter((emp) => emp.EmployeeType == empType)])
-      console.log('empType', empType)
-      console.log('filterEmployees', filterEmployees)
+    
 
     }
     else if (empType == "") {
@@ -77,6 +77,7 @@ export default function EmployeeList() {
 
   useEffect(() => {
 
+    //sort employees by id 
     if (empType == "" && filterAttr == "id") {
       (idFilter == "des") ? employees.sort((a, b) => a.id - b.id) : (employees.sort((a, b) => b.id - a.id))
     }
@@ -85,13 +86,14 @@ export default function EmployeeList() {
       (idFilter == "des") ? filterEmployees.sort((a, b) => a.id - b.id) : (filterEmployees.sort((a, b) => b.id - a.id))
     }
 
-    console.log(filterAttr, idFilter)
+   
 
 
 
   }, [idFilter, filterEmployees, employees])
 
   useEffect(() => {
+      //sort employees by display name
     if (empType == "" && filterAttr == "name") {
 
       (nameFilter == "des") ? employees.sort((a, b) => a.DisplayName.localeCompare(b.DisplayName)) : (employees.sort((a, b) => b.DisplayName.localeCompare(a.DisplayName)))
@@ -100,7 +102,7 @@ export default function EmployeeList() {
 
       (nameFilter == "des") ? filterEmployees.sort((a, b) => a.DisplayName.localeCompare(b.DisplayName)) : (filterEmployees.sort((a, b) => b.DisplayName.localeCompare(a.DisplayName)))
     }
-    console.log(filterAttr, nameFilter)
+    
 
   }, [nameFilter, employees, filterEmployees])
 
