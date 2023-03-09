@@ -11,6 +11,17 @@ export default function EditEmployee(props) {
         { key: 1, text: "Female", value: "Female" },
         { key: 2, text: "Male", value: "Male" }
     ]
+    const ExperenceOptions = [
+        { key: 1, text: "01 Years", value: "01 Years" },
+        { key: 2, text: "02 Years", value: "02 Years" },
+        { key: 3, text: "03 Years", value: "03 Years" },
+        { key: 4, text: "04 Years", value: "04 Years" },
+        { key: 5, text: "05 Years", value: "05 Years" },
+        { key: 6, text: "06 Years", value: "06 Years" },
+        { key: 7, text: "07 Years", value: "07 Years" },
+        { key: 8, text: "08 Years", value: "08 Years" },
+        { key: 9, text: "more than 8 Years", value: "more than 8 Years" }
+    ]
     const [errMesHidden, setErrMesHidden] = useState(true)
     const [employee, setEmployee] = useState({
         ...props.employee,
@@ -191,7 +202,7 @@ export default function EditEmployee(props) {
                             selection
                             onChange={(e, { value }) => setEmployee({ ...employee, Experience: value })}
 
-                            options={CategoryOptions}
+                            options={ExperenceOptions}
                             value={employee.Experience}
 
                         >
