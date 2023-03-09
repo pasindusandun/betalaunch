@@ -16,6 +16,7 @@ export default function EditEmployee(props) {
         JoinedDate:Date.parse(props.employee.JoinedDate)
     });
     const onSubmitHandler=()=>{
+        console.log('props.employee.JoinedDate',props.employee.JoinedDate)
         axios.post(`http://localhost:5000/user/update/${employee._id}`,{...employee,DOB:Date.parse(employee.DOB),JoinedDate:Date.parse(employee.JoinedDate)}).then((res)=>{
             if(res.data.id){
                 props.setEmployees([
