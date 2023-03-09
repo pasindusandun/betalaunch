@@ -243,11 +243,15 @@ export default function Addemployee(props) {
                 {/* <Message negative  hidden={!errormsg}>
     <Message.Header >Fields are empty</Message.Header>
   </Message> */}
+            {/* <div style={{alignItems:'center'}}>  */}
+
+            
             <Form.Group inline  >
-            <a onClick={()=>{props.setOpen(false)}}>cancel </a> 
+            <a onClick={()=>{props.setOpen(false)}}  >cancel </a> 
                 <Button color='blue' onClick={()=>onSubmitHandler()}>Add People</Button>
 
             </Form.Group>
+            {/* </div> */}
                
                 {/* <Form.Button   color='blue'  content='Add People' /> */}
             </Form>
