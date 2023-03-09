@@ -40,10 +40,15 @@ export default function EditEmployee(props) {
                         res.data
                     ])
                     props.setEditOpen(false)
+                }else{
+                    setErrMesHidden(false)
                 }
 
+
             }).catch((err) => {
-                console.log(err)
+              console.log(err)
+                    setErrMesHidden(false)
+                
             })
         }
         else {

@@ -19,8 +19,10 @@ export default function Employeerow({ employee,
         setDeleteOpen(false)
       }
 
+
     }).catch((err) => {
       console.log(err)
+    
     })
 
   }

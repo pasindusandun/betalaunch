@@ -52,10 +52,14 @@ export default function Addemployee(props) {
                         res.data
                     ])
                     props.setOpen(false);
+                }else {
+                    setErrMesHidden(false)
                 }
 
             }).catch((err) => {
                 console.log(err)
+                    setErrMesHidden(false)
+             
             })
         }
         else {

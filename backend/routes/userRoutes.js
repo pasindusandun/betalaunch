@@ -34,7 +34,7 @@ router.post('/', async (req,res)=>{
                     }
                     res.json(use) 
                 }).catch((erros)=>{
-                    console.log("erros",erros)
+                    res.status(500).json({error:"error"})
                 })
                 
             }
@@ -45,7 +45,7 @@ router.post('/', async (req,res)=>{
         })
         .catch((err) => {
             console.log('err');
-          res.status(500).json(err);
+          res.status(500).json({error:"error"})
         });
     })
     
@@ -76,7 +76,7 @@ router.post('/update/:id', (req,res)=>{
             user.save().then((doc)=>{
                 res.json(doc)
             }).catch((err)=>{
-                res.status(500).json(err);
+                res.status(500).json({error:"error"})
             })
     })
 

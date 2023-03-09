@@ -39,6 +39,7 @@ export default function EmployeeList() {
 
     }).catch((err) => {
       console.log(err)
+    
     })
 
   }, [])
