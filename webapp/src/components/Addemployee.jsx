@@ -64,7 +64,7 @@ export default function Addemployee(props) {
 
 
 
-     
+
     }
     return (
         <div>
@@ -86,7 +86,7 @@ export default function Addemployee(props) {
                     <input placeholder='Full Name' name="FullName" type="text"
                         onChange={(e) => {
                             setEmployee({ ...employee, FullName: e.target.value })
-                           
+
                         }}
 
                     />
@@ -216,7 +216,7 @@ export default function Addemployee(props) {
                         <input placeholder='Salary' name="Salary" type="number"
                             onChange={(e) => {
                                 setEmployee({ ...employee, Salary: e.target.value })
-                             
+
                             }}
 
 
@@ -226,15 +226,20 @@ export default function Addemployee(props) {
                 </Form.Group>
 
 
-                <Form.TextArea label='Personal Notes' 
+                <Form.TextArea label='Personal Notes'
                     onChange={(e) => setEmployee({ ...employee, PersonalNotes: e.target.value })}
                 />
 
 
 
                 <Form.Group inline  >
-                    <a onClick={() => { props.setOpen(false) }}  >cancel </a>
-                    <Button color='blue' onClick={() => onSubmitHandler()}>Add People</Button>
+                    <Form.Field width={16} >
+                    </Form.Field>
+                    <Form.Field width={8} >
+                        <a onClick={() => { props.setOpen(false) }}  >cancel </a>
+                        <Button color='blue' onClick={() => onSubmitHandler()}>Add People</Button>
+                    </Form.Field>
+
 
                 </Form.Group>
 

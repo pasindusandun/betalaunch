@@ -29,7 +29,7 @@ export default function EditEmployee(props) {
         JoinedDate: Date.parse(props.employee.JoinedDate)
     });
     const onSubmitHandler = () => {
-      
+
         //validate and add employee
         if (validator.isEmail(employee.Email) && employee.FullName != "" && employee.NameWithInitials != "") {
             setErrMesHidden(true)
@@ -51,9 +51,9 @@ export default function EditEmployee(props) {
         }
 
 
-        
+
     }
-  
+
 
     return (
         <div>
@@ -228,11 +228,14 @@ export default function EditEmployee(props) {
                     onChange={(e) => setEmployee({ ...employee, PersonalNotes: e.target.value })}
                     value={employee.PersonalNotes}
                 />
-                    
-                <Form.Group inline  >
-                    <a onClick={() => { props.setEditOpen(false) }}>cancel </a>
-                    <Button color='blue' onClick={() => onSubmitHandler()}>Update People</Button>
 
+                <Form.Group  >
+                <Form.Field width={16} >
+                </Form.Field>
+                    <Form.Field width={6}>
+                        <a onClick={() => { props.setEditOpen(false) }}>cancel </a>
+                        <Button color='blue' onClick={() => onSubmitHandler()}>Update People</Button>
+                    </Form.Field>
                 </Form.Group>
                 <Message negative hidden={errMesHidden}>
                     <Message.Header>There was some errors with your submission</Message.Header>
