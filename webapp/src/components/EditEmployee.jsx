@@ -5,39 +5,25 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 
-export default function Addemployee(props) {
+export default function EditEmployee(props) {
     const CategoryOptions = [
         { key: 1, text: "Female", value: "Female" },
         { key: 2, text: "Male", value: "Male" }
     ]
-    const [employee, setEmployee] = useState({
-        FullName: "",
-        NameWithInitials: "",
-        DisplayName: "",
-        Gender: "",
-        DOB: "",
-        Email: "",
-        MobileNumber: "",
-        Designation: "",
-        EmployeeType: "",
-        JoinedDate: "",
-        Experience: "",
-        Salary: 200000,
-        PersonalNotes: ""
-
-    });
+    const [employee, setEmployee] = useState(props.employee);
     const onSubmitHandler=()=>{
-        // axios.post('http://localhost:5000/user',employee).then((res)=>{
-        //     if(res.data[0].id){
-        //          props.setEmployees([
-                    // ...props.employes,
-        //             ...res.data
-        //         ])
-        //     }
+        axios.post(`http://localhost:5000/user/update/${employee._id}`,employee).then((res)=>{
+            if(res.data.id){
+                props.setEmployees([
+                    ...props.employees.filter((emp)=>emp.id != res.data.id),
+                    res.data
+                ])
+                props.setEditOpen(false)
+            }
            
-        //   }).catch((err)=>{
-        //     console.log(err)
-        //   })
+          }).catch((err)=>{
+            console.log(err)
+          })
         // props.setEmployees([
         //     ...props.employes,
         //     employee
@@ -62,10 +48,8 @@ export default function Addemployee(props) {
                 <Form.Field required >
                     <label style={{color:'blue'}}>Full Name</label>
                     <input placeholder='Full Name' name="FullName" type="text"
-                    onChange={(e) => {
-                        setEmployee({ ...employee, FullName: e.target.value })
-                        console.log('employee.FullName',e.target.value)
-                    }}
+                    value={employee.FullName}
+                    onChange={(e) => setEmployee({ ...employee, FullName: e.target.value })}
                     //   onChange={(e)=>{setQuestionatt({...questionatt,Question:e.target.value})}}
                     />
                 </Form.Field>
@@ -75,6 +59,7 @@ export default function Addemployee(props) {
                     <Form.Field required>
                         <label style={{color:'blue'}}>Name With Initials</label>
                         <input placeholder='Name with Initials' name='NameWithInitials' type="text"
+                        value={employee.NameWithInitials}
                         onChange={(e) => setEmployee({ ...employee, NameWithInitials:  e.target.value })}
                         //   on={(e)=>{setQuestionatt({...questionatt,Salary:e.target.value})}}
                         />
@@ -82,6 +67,7 @@ export default function Addemployee(props) {
                     <Form.Field >
                         <label style={{color:'blue'}}>Prefered / Display Name</label>
                         <input placeholder='Display Name' name="DisplayName" type="text"
+                        value={employee.DisplayName}
                         onChange={(e) => setEmployee({ ...employee, DisplayName:  e.target.value })}
                         //   onChange={(e)=>{setQuestionatt({...questionatt,Question:e.target.value})}}
                         />
@@ -106,6 +92,7 @@ export default function Addemployee(props) {
                             options={CategoryOptions}
                             value={employee.Gender}
                         // defaultValue={CategoryOptions[0].value}
+                        // defaultOpen={employee.Gender}
                         >
 
                         </Dropdown>
@@ -131,12 +118,14 @@ export default function Addemployee(props) {
                         <label style={{color:'blue'}}>Email</label>
                         <input placeholder='Email' name='Email' type="email"
                         onChange={(e) => setEmployee({ ...employee, Email:  e.target.value })}
+                        value={employee.Email}
                         //   on={(e)=>{setQuestionatt({...questionatt,Salary:e.target.value})}}
                         />
                     </Form.Field>
                     <Form.Field >
                         <label style={{color:'blue'}}>Mobile Number</label>
                         <input placeholder='Mobile Number' name="MobileNumber" type="text"
+                        value={employee.MobileNumber}
                         onChange={(e) => setEmployee({ ...employee, MobileNumber:  e.target.value })}
                         //   onChange={(e)=>{setQuestionatt({...questionatt,Question:e.target.value})}}
                         />
@@ -148,6 +137,7 @@ export default function Addemployee(props) {
                         <label style={{color:'blue'}}>Designation</label>
                         <input placeholder='Designation' name="Designation" type="text"
                         onChange={(e) => setEmployee({ ...employee, Designation:  e.target.value })}
+                        value={employee.Designation}
                         //   onChange={(e)=>{setQuestionatt({...questionatt,Question:e.target.value})}}
                         />
                     </Form.Field>
@@ -162,6 +152,7 @@ export default function Addemployee(props) {
                             // onChange={({value}) => {setSelectstatus(value)}}
                             options={props.empTypOptions}
                             value={employee.EmployeeType}
+                            // defaultOpen={employee.EmployeeType}
                         // defaultValue={CategoryOptions[0].value}
                         >
 
@@ -196,6 +187,7 @@ export default function Addemployee(props) {
                             // onChange={({value}) => {setSelectstatus(value)}}
                             options={CategoryOptions}
                             value={employee.Experience}
+                            // defaultOpen={employee.Experience}
                         // defaultValue={CategoryOptions[0].value}
                         >
 
@@ -206,19 +198,12 @@ export default function Addemployee(props) {
                 </Form.Group>
                 <Form.Group>
                 <Form.Field  width={8} >
-                        <label style={{color:'blue'}} >Salary</label>
+                        <label style={{color:'blue'}}>Salary</label>
                         <input placeholder='Salary' name="Salary" type="number"
-                        onChange={(e) => {
-                            setEmployee({ ...employee, Salary:e.target.value })
-                            console.log('employee.Salary',e.target.value)
-                        }}
-                       
+                        onChange={(e) => setEmployee({ ...employee, Salary:e.target.value })}
+                        value={employee.Salary}
                         //   onChange={(e)=>{setQuestionatt({...questionatt,Question:e.target.value})}}
                         />
-                         {/* <Form.Input type='number'  placeholder='Salary' name="Salary" onChange={(e) => {
-                            setEmployee({ ...employee, Salary:e.target.value })
-                            console.log('employee.Salary',e.target.value)
-                        }} /> */}
                     </Form.Field>
                 </Form.Group>
 
@@ -236,16 +221,17 @@ export default function Addemployee(props) {
 
                     </Dropdown>
         </Form.Field> */}
-                <Form.TextArea label='Personal Notes' style={{color:'blue'}}
+                <Form.TextArea label='Personal Notes'
                 onChange={(e) => setEmployee({ ...employee, PersonalNotes:e.target.value })}
+                value={employee.PersonalNotes}
                 />
                 {/* <Button type='submit' onClick={(e)=>{onSubmitHandler(e)}} >Submit</Button> */}
                 {/* <Message negative  hidden={!errormsg}>
     <Message.Header >Fields are empty</Message.Header>
   </Message> */}
             <Form.Group inline  >
-            <a onClick={()=>{props.setOpen(false)}}>cancel </a> 
-                <Button color='blue' onClick={()=>onSubmitHandler()}>Add People</Button>
+            <a onClick={()=>{props.setEditOpen(false)}}>cancel </a> 
+                <Button color='blue' onClick={()=>onSubmitHandler()}>Update People</Button>
 
             </Form.Group>
                

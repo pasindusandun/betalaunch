@@ -1,3 +1,7 @@
 .rootdiv{
     padding: 4%;
 }
+.inputLabel{
+    color: blue;
+    /* text-decoration-color: blue; */
+}

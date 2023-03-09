@@ -15,6 +15,7 @@ export default function EmployeeList() {
     const [page, setPage] = useState(1);
     // const dispatch  = useDispatch();
     const [open, setOpen] = useState(false);
+    const [editOpen, setEditOpen] = useState(false);
     const options = [
         { key: 1, text: 'Full time', value: 'Full time' },
         { key: 2, text: 'Part time', value: 'Part time' },
@@ -134,8 +135,8 @@ export default function EmployeeList() {
 
               <Table.Body>
 
-             { empType ? filterEmployees.map((employee) => <Employeerow key={employee.id} employee={employee}/>)
-             :( employees.map((employee) => <Employeerow key={employee.id} employee={employee}/>))}
+             { empType ? filterEmployees.map((employee) => <Employeerow key={employee.id} employee={employee} employees={employees} setEmployees={setEmployees} editOpen={editOpen} setEditOpen={setEditOpen} empTypOptions={options} />)
+             :( employees.map((employee) => <Employeerow key={employee.id} employee={employee} employees={employees} setEmployees={setEmployees} editOpen={editOpen} setEditOpen={setEditOpen} empTypOptions={options}/>))}
                 {/* {search ? 
                 (filterquestion.map((question,index) => {
                   // console.log('index',index);
