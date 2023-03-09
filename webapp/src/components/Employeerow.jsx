@@ -1,31 +1,26 @@
 import React, { useState } from 'react'
-import { Button, Header, Image, Modal, Checkbox, Icon, Table, List, Input, Card, Dropdown, Menu, MenuItem, Search } from 'semantic-ui-react'
-// import Addemployee from './Addemployee'
+import { Button, Header,  Modal,  Icon, Table } from 'semantic-ui-react'
 import EditEmployee from './EditEmployee'
 import axios from "axios";
 
 
 export default function Employeerow({ employee,
-  //  editOpen, setEditOpen, 
-   employees, setEmployees, empTypOptions }) {
+  employees, setEmployees, empTypOptions }) {
   const [deleteOpen, setDeleteOpen] = useState(false)
   const [editOpen, setEditOpen] = useState(false);
-  const onDeleteHandler =()=>{
-    axios.delete(`http://localhost:5000/user/delete/${employee._id}`).then((res)=>{
-            if(res.data.id){
-                // props.setEmployees([
-                //     ...props.employees,
-                //     ...res.data
-                // ])
-                 setEmployees([
-                  ...employees.filter((emp)=> emp.id != res.data.id)
-                 ])
-                 setDeleteOpen(false)
-            }
-           
-          }).catch((err)=>{
-            console.log(err)
-          })
+  const onDeleteHandler = () => {
+    axios.delete(`http://localhost:5000/user/delete/${employee._id}`).then((res) => {
+      if (res.data.id) {
+
+        setEmployees([
+          ...employees.filter((emp) => emp.id != res.data.id)
+        ])
+        setDeleteOpen(false)
+      }
+
+    }).catch((err) => {
+      console.log(err)
+    })
 
   }
 
@@ -71,7 +66,7 @@ export default function Employeerow({ employee,
         </Modal>
 
 
-        
+
 
 
 

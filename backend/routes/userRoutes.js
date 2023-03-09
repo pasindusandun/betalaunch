@@ -3,6 +3,7 @@ const User= require('../model/userModel');
 const count= require('../model/countModel');
 const Count = require('../model/countModel');
 
+//add user
 router.post('/', async (req,res)=>{
 
      count.findOne({id:"count"}).then((resp)=>{
@@ -35,20 +36,12 @@ router.post('/', async (req,res)=>{
                 }).catch((erros)=>{
                     console.log("erros",erros)
                 })
-                // res.json(use) 
+                
             }
             else{
                 res.status(400).json(use);
             }
-        //  use ? (
-        //     count.findOneAndUpdate({id:"count"},{"$inc":{"count":1}},{new:true},(err,cd)=>{
-        //         if(cd==null){
-        //             const newcount = new Count({id:"count",count:1})
-        //             newcount.save();
-        //         }
-        //     })
-        //     (res.json(use) )
-        //     ): res.status(400).json(use);
+        
         })
         .catch((err) => {
             console.log('err');
@@ -57,18 +50,15 @@ router.post('/', async (req,res)=>{
     })
     
 
-    // addQuestion(req.body).then((newDoc)=>{
-    //     newDoc._id ? res.json(newDoc) : res.status(400).json(newDoc);
-    // }).catch((err)=>{
-    //     res.status(500).json(err);
-    // })
+
 });
+//update user
 router.post('/update/:id', (req,res)=>{
-    console.log('req',req.body)
+
     req.body.DOB == Date.parse(req.body.DOB);
         req.body.JoinedDate == Date.parse(req.body.JoinedDate);
     User.findByIdAndUpdate(req.params.id).then((user)=>{
-        // console.log(user),
+    
         (user?( user.FullName = req.body.FullName):null),
             (user ?(user.NameWithInitials = req.body.NameWithInitials):null),
             (user ? (user.DisplayName = req.body.DisplayName):null),
@@ -90,15 +80,10 @@ router.post('/update/:id', (req,res)=>{
             })
     })
 
-    // console.log("req.params.id",req.params.id)
-    // console.log("req.body",req.body)
-    // updateQuestion(req.body,req.params.id).then((doc)=>{
-    //     res.json(doc)
-    // }).catch((err)=>{
-    //     console.log(err)
-    // })
+ 
 })
 
+// delete user
 router.delete('/delete/:id',(req,res)=>{
 
     User.findByIdAndRemove(req.params.id).then((user)=>{
@@ -107,13 +92,11 @@ router.delete('/delete/:id',(req,res)=>{
         res.status(500).json({error:"error"})
     })
 
-    // deleteQuestion(req.params.id).then((doc)=>{
-    //     res.json(doc)
-    // }).catch((err)=>{
-    //     console.log(err)
-    // })
+  
 
 })
+
+//get all employees
 router.get('/', (req, res) => {
 
     User.find().then((user)=>{
@@ -122,11 +105,7 @@ router.get('/', (req, res) => {
         res.status(500).json({error:"error"});
     })
 
-    // getAllQuestions().then((docs) => {
-    //     res.json(docs);
-    // }).catch((err) => {
-    //     console.log('err: ', err);
-    // })
+   
 
 })
 
