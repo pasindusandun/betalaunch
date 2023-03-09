@@ -23,7 +23,7 @@ const userSchema = new Schema({
         required: true 
     },
     DOB:{
-        type: String,
+        type: Date,
         // required: true
     },
     Email: {
@@ -44,7 +44,7 @@ const userSchema = new Schema({
         required: true
     },
     JoinedDate:{
-        type: String,
+        type: Date,
         // required: true
     },
     Experience:{

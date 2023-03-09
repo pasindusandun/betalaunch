@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../css/forminput.css'
 import { Button, Header, Image, Modal, Checkbox, Form, Dropdown, Message, Divider, Icon } from 'semantic-ui-react'
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,9 +10,13 @@ export default function EditEmployee(props) {
         { key: 1, text: "Female", value: "Female" },
         { key: 2, text: "Male", value: "Male" }
     ]
-    const [employee, setEmployee] = useState(props.employee);
+    const [employee, setEmployee] = useState({
+        ...props.employee,
+        DOB:Date.parse(props.employee.DOB),
+        JoinedDate:Date.parse(props.employee.JoinedDate)
+    });
     const onSubmitHandler=()=>{
-        axios.post(`http://localhost:5000/user/update/${employee._id}`,employee).then((res)=>{
+        axios.post(`http://localhost:5000/user/update/${employee._id}`,{...employee,DOB:Date.parse(employee.DOB),JoinedDate:Date.parse(employee.JoinedDate)}).then((res)=>{
             if(res.data.id){
                 props.setEmployees([
                     ...props.employees.filter((emp)=>emp.id != res.data.id),
@@ -30,6 +34,16 @@ export default function EditEmployee(props) {
         // ])
         console.log(employee)
     }
+    useEffect(() => {
+    //   setEmployee({
+    //     ...employee,
+    //     DOB:Date.parse(employee.DOB),
+    //     JoinedDate:Date.parse(employee.JoinedDate)
+    //   })
+      console.log('employee',employee)
+      console.log('props.employee',props.employee)
+    }, [])
+    
     return (
         <div>
             <div 

@@ -6,6 +6,8 @@ const Count = require('../model/countModel');
 router.post('/', async (req,res)=>{
 
      count.findOne({id:"count"}).then((resp)=>{
+        req.body.DOB == Date.parse(req.body.DOB);
+        req.body.JoinedDate == Date.parse(req.body.JoinedDate);
         if(resp == null){
             req.body.id = 1;
         }
@@ -14,7 +16,7 @@ router.post('/', async (req,res)=>{
         }
         
         const newUser = new User(req.body);
-        // console.log(newUser)
+        console.log(newUser)
   
     newUser
         .save()
@@ -62,26 +64,29 @@ router.post('/', async (req,res)=>{
     // })
 });
 router.post('/update/:id', (req,res)=>{
-
+    console.log('req',req.body)
+    req.body.DOB == Date.parse(req.body.DOB);
+        req.body.JoinedDate == Date.parse(req.body.JoinedDate);
     User.findByIdAndUpdate(req.params.id).then((user)=>{
-        (user.FullName?( user.FullName = req.body.FullName):null),
-            (user.NameWithInitials ?(user.NameWithInitials = req.body.NameWithInitials):null),
-            (user.DisplayName ? (user.DisplayName = req.body.DisplayName):null),
-            (user.Gender?( user.Gender = req.body.Gender):null),
-            (user.DOB?( user.DOB = req.body.DOB):null),
-            (user.Email?( user.Email = req.body.Email):null),
-            (user.MobileNumber?( user.MobileNumber = req.body.MobileNumber):null),
-            (user.Designation?( user.Designation = req.body.Designation):null),
-            (user.EmployeeType?( user.EmployeeType = req.body.EmployeeType):null),
-            (user.JoinedDate?( user.JoinedDate = req.body.JoinedDate):null),
-            (user.Experience?( user.Experience = req.body.Experience):null),
-            (user.Salary?( user.Salary = req.body.Salary):null),
-            (user.PersonalNotes?( user.PersonalNotes = req.body.PersonalNotes):null),
+        // console.log(user),
+        (user?( user.FullName = req.body.FullName):null),
+            (user ?(user.NameWithInitials = req.body.NameWithInitials):null),
+            (user ? (user.DisplayName = req.body.DisplayName):null),
+            (user?( user.Gender = req.body.Gender):null),
+            (user?( user.DOB = req.body.DOB ):null),
+            (user?( user.Email = req.body.Email):null),
+            (user?( user.MobileNumber = req.body.MobileNumber):null),
+            (user?( user.Designation = req.body.Designation):null),
+            (user?( user.EmployeeType = req.body.EmployeeType):null),
+            (user?( user.JoinedDate = req.body.JoinedDate):null),
+            (user?( user.Experience = req.body.Experience):null),
+            (user?( user.Salary = req.body.Salary):null),
+            (user?( user.PersonalNotes = req.body.PersonalNotes):null),
 
             user.save().then((doc)=>{
                 res.json(doc)
             }).catch((err)=>{
-                res.status(500).json({error:"error"});
+                res.status(500).json(err);
             })
     })
 

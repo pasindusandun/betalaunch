@@ -17,7 +17,7 @@ export default function EmployeeList() {
   const [page, setPage] = useState(1);
   // const dispatch  = useDispatch();
   const [open, setOpen] = useState(false);
-  const [editOpen, setEditOpen] = useState(false);
+  // const [editOpen, setEditOpen] = useState(false);
   const options = [
     { key: 1, text: 'Full time', value: 'Full time' },
     { key: 2, text: 'Part time', value: 'Part time' },
@@ -175,13 +175,17 @@ export default function EmployeeList() {
 
               {empType ? filterEmployees.map((employee,index) => {
                 if( (index>=pageSize*(page-1))&& (index < pageSize * page) ){
-                      return <Employeerow key={employee.id} employee={employee} employees={employees} setEmployees={setEmployees} editOpen={editOpen} setEditOpen={setEditOpen} empTypOptions={options} />
+                      return <Employeerow key={employee.id} employee={employee} employees={employees} setEmployees={setEmployees}
+                      //  editOpen={editOpen} setEditOpen={setEditOpen} 
+                       empTypOptions={options} />
                 }
               
             })
                 : (employees.map((employee,index) => {
                   if( (index>=pageSize*(page-1))&& (index < pageSize * page) ){
-                    return <Employeerow key={employee.id} employee={employee} employees={employees} setEmployees={setEmployees} editOpen={editOpen} setEditOpen={setEditOpen} empTypOptions={options} />
+                    return <Employeerow key={employee.id} employee={employee} employees={employees} setEmployees={setEmployees} 
+                    // editOpen={editOpen} setEditOpen={setEditOpen} 
+                    empTypOptions={options} />
               }
                 
                 }))}

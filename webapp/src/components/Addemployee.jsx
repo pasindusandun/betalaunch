@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../css/forminput.css'
 import { Button, Header, Image, Modal, Checkbox, Form, Dropdown, Message, Divider, Icon } from 'semantic-ui-react'
 import "react-datepicker/dist/react-datepicker.css";
@@ -26,18 +26,25 @@ export default function Addemployee(props) {
         PersonalNotes: ""
 
     });
+    // useEffect(() => {
+    //  console.log('employee',employee)
+    //  console.log("DOB",Date.parse(employee.DOB))
+    // }, [employee.DOB,employee.JoinedDate])
+    
     const onSubmitHandler=()=>{
-        // axios.post('http://localhost:5000/user',employee).then((res)=>{
-        //     if(res.data[0].id){
-        //          props.setEmployees([
-                    // ...props.employes,
-        //             ...res.data
-        //         ])
-        //     }
+        
+        axios.post('http://localhost:5000/user',{...employee,DOB:Date.parse(employee.DOB),JoinedDate:Date.parse(employee.JoinedDate)}).then((res)=>{
+            if(res.data.id){
+                 props.setEmployees([
+                    ...props.employees,
+                    res.data
+                ])
+                props.setOpen(false);
+            }
            
-        //   }).catch((err)=>{
-        //     console.log(err)
-        //   })
+          }).catch((err)=>{
+            console.log(err)
+          })
         // props.setEmployees([
         //     ...props.employes,
         //     employee
@@ -120,6 +127,7 @@ export default function Addemployee(props) {
                             dateFormat="yyyy-MM-dd"
                             scrollableYearDropdown
                             selected={employee.DOB}
+                            // selected={Date.parse("2023-02-26T18:30:00.000Z")}
                             placeholderText="DOB"
                             // timeInputLabel='startDate' 
                             onChange={(date) => setEmployee({ ...employee, DOB: date })} />

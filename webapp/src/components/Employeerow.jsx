@@ -5,8 +5,11 @@ import EditEmployee from './EditEmployee'
 import axios from "axios";
 
 
-export default function Employeerow({ employee, editOpen, setEditOpen, employees, setEmployees, empTypOptions }) {
+export default function Employeerow({ employee,
+  //  editOpen, setEditOpen, 
+   employees, setEmployees, empTypOptions }) {
   const [deleteOpen, setDeleteOpen] = useState(false)
+  const [editOpen, setEditOpen] = useState(false);
   const onDeleteHandler =()=>{
     axios.delete(`http://localhost:5000/user/delete/${employee._id}`).then((res)=>{
             if(res.data.id){
